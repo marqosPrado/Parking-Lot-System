@@ -12,12 +12,13 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
+    @ManyToOne
     private Customer customerId;
+    @Enumerated(EnumType.STRING)
     private VehicleType type;
     private String brand;
     private String model;
-    private Year year;
+    private Year releaseYear;
     private String color;
     private String licensePlate;
 
@@ -27,14 +28,28 @@ public class Vehicle {
                    VehicleType type,
                    String brand,
                    String model,
-                   Year year,
+                   Year releaseYear,
                    String color,
                    String licensePlate) {
         this.customerId = customerId;
         this.type = type;
         this.brand = brand;
         this.model = model;
-        this.year = year;
+        this.releaseYear = releaseYear;
+        this.color = color;
+        this.licensePlate = licensePlate;
+    }
+
+    public Vehicle(VehicleType type,
+                   String brand,
+                   String model,
+                   Year releaseYear,
+                   String color,
+                   String licensePlate) {
+        this.type = type;
+        this.brand = brand;
+        this.model = model;
+        this.releaseYear = releaseYear;
         this.color = color;
         this.licensePlate = licensePlate;
     }
@@ -79,12 +94,12 @@ public class Vehicle {
         this.model = model;
     }
 
-    public Year getYear() {
-        return year;
+    public Year getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setYear(Year year) {
-        this.year = year;
+    public void setReleaseYear(Year year) {
+        this.releaseYear = year;
     }
 
     public String getColor() {
